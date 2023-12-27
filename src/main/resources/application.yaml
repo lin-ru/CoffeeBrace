@@ -1,0 +1,26 @@
+server:
+  port: 8282
+  servlet:
+    context-path: /api_001
+spring:
+  application:
+    name: coffee-brace
+#Data source
+  datasource:
+    url: jdbc:h2:mem:test
+  #  url: jdbc:h2:file:/data/demo
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    generate-dll: true
+    hibernate:
+      dll-auto: create-drop
+
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+
