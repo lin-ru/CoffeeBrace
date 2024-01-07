@@ -19,7 +19,6 @@ public class CardController {
 
     private final CardRepo cardRepo;
 
-
     public CardController(CardRepo cardRepo) {
         this.cardRepo = cardRepo;
     }

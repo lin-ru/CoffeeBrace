@@ -1,4 +1,14 @@
 package com.github.linru.CoffeeBrace.repositories;
 
-public interface UserRepo {
+import com.github.linru.CoffeeBrace.entities.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+@Repository
+public interface UserRepo extends JpaRepository<User, Long> {
+
+Optional<User> findByUsername(String username);
+
 }

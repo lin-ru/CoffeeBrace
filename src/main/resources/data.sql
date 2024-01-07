@@ -1,22 +1,8 @@
-DROP TABLE IF EXISTS users CASCADE;
-CREATE TABLE users
-(
-    id          BIGSERIAL PRIMARY KEY,
-    status      VARCHAR(10),
-    username    VARCHAR(255) UNIQUE,
-    passowrd    VARCHAR(255)
-);
+INSERT INTO users (id, status, password, username) VALUES (1, 'ACTIVE','MTIzNDU2', 'admin');
+INSERT INTO users (id, status, password, username) VALUES (2, 'ACTIVE','MTIzNDU2', 'user');
 
-DROP TABLE IF EXISTS roles CASCADE;
-CREATE TABLE roles
-(
-    id BIGSERIAL PRIMARY KEY,
-    name VARCHAR(50) NOT NULL
-);
-DROP TABLE IF EXISTS user_roles CASCADE;
-CREATE TABLE user_roles
-(
-    user_id BIGINT NOT NULL REFERENCES users,
-    role_id BIGINT NOT NULL REFERENCES roles,
-    unique (user_id, role_id)
-);
+INSERT INTO roles (id, name) VALUES (1, 'ROLE_ADMIN');
+INSERT INTO roles (id, name) VALUES (2, 'ROLE_USER');
+
+INSERT INTO user_roles (user_id, role_id) VALUES (1, 1);
+INSERT INTO user_roles (user_id, role_id) VALUES (2, 2);
