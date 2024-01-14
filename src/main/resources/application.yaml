@@ -7,20 +7,24 @@ spring:
     name: coffee-brace
 #Data source
   datasource:
-    url: jdbc:h2:mem:test
-  #  url: jdbc:h2:file:/data/demo
-    driverClassName: org.h2.Driver
-    username: sa
-    password:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/cofbradb
+    username: viola
+    password: violapassw
+
+  liquibase:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/cofbradb
+    enabled: true
+#    change-log: classpath:db/changelog/db.changelog-master.xml
+    user: viola
+    password: violapassw
+    change-log: classpath:db/changelog/db.changelog-master.sql
+
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    generate-dll: true
+    show-sql: true
+    generate-ddl: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      dll-auto: create-drop
-
-  h2:
-    console:
-      enabled: true
-      settings:
-        web-allow-others: true
-
+      ddl-auto: create-drop
