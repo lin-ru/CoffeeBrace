@@ -1,0 +1,11 @@
+databaseChangeLog: #параметр в котором находятся миграции
+  - include: # список активных миграций
+      file: /db/changelog/db.changelog-0.01.sql # createTable "users"
+  - include:
+      file: /db/changelog/db.changelog-0.02.sql # createTable "roles"
+  - include:
+      file: /db/changelog/db.changelog-0.03.sql # createTable "user_roles"
+  - include:
+      file: /db/changelog/db.changelog-0.04.sql # createTable "cards"
+  - include:
+      file: /db/changelog/db.changelog-0.05.sql # add data into tables user, roles, user_roles for 2 users: admin and user

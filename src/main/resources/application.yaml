@@ -19,12 +19,12 @@ spring:
 #    change-log: classpath:db/changelog/db.changelog-master.xml
     user: viola
     password: violapassw
-    change-log: classpath:db/changelog/db.changelog-master.sql
+    change-log: classpath:db/db.changelog-master.yaml
 
   jpa:
     show-sql: true
     generate-ddl: true
     database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+   # database-platform: org.hibernate.dialect.PostgreSQLDialect  HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: validate

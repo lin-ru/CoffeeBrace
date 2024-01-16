@@ -1,26 +1,26 @@
 package com.github.linru.CoffeeBrace.entities;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
 @Entity
+@Table(name = "cards")
+@NoArgsConstructor(access= AccessLevel.PRIVATE, force=true)
 public class Card {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "card_id")
     UUID id;
 
+    @Column(name = "title")
     String title;
+
+    @Column(name = "description")
     String description;
-
-    protected Card() {
-
-    }
 
     public Card(String title, String description) {
         this.title = title;
