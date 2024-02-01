@@ -28,3 +28,8 @@ spring:
    # database-platform: org.hibernate.dialect.PostgreSQLDialect  HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
     hibernate:
       ddl-auto: validate
+
+jwt:
+  token:
+    secret: jwtappdev
+    expired: 600000

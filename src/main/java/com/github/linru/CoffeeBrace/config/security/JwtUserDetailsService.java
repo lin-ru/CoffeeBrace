@@ -1,6 +1,8 @@
 package com.github.linru.CoffeeBrace.config.security;
 
 import com.github.linru.CoffeeBrace.CoffeeBraceApplication;
+import com.github.linru.CoffeeBrace.config.security.jwt.JwtUser;
+import com.github.linru.CoffeeBrace.config.security.jwt.JwtUserFactory;
 import com.github.linru.CoffeeBrace.entities.User;
 import com.github.linru.CoffeeBrace.services.UserService;
 import org.slf4j.Logger;
@@ -24,11 +26,14 @@ public class JwtUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.findByUserName(username);
+        log.info("----Start method: findById ----");
+        User user = userService.findByUserName(username).get();
         if (user == null) {
             throw new UsernameNotFoundException("User with username: "+ username +"not found");
         }
+        JwtUser jwtUser = JwtUserFactory.create(user);
 
-        return null;
+        log.info("IN loadUserByUsername - user with username: {} successfully loaded", username);
+        return jwtUser;
     }
 }
