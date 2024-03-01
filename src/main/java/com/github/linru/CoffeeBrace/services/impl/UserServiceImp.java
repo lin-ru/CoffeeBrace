@@ -1,6 +1,7 @@
 package com.github.linru.CoffeeBrace.services.impl;
 
 import com.github.linru.CoffeeBrace.CoffeeBraceApplication;
+import com.github.linru.CoffeeBrace.config.security.SecurityConfig;
 import com.github.linru.CoffeeBrace.entities.Role;
 import com.github.linru.CoffeeBrace.entities.Status;
 import com.github.linru.CoffeeBrace.entities.User;
@@ -28,15 +29,15 @@ public class UserServiceImp implements UserService, UserDetailsService {
 
     private final UserRepo userRepo;
     private final RoleRepo roleRepo;
-    private final BCryptPasswordEncoder passwordEncoder;
+//    private final BCryptPasswordEncoder passwordEncoder;
 
     private static final Logger log = LoggerFactory.getLogger(CoffeeBraceApplication.class);
 
     @Autowired
-    public UserServiceImp(UserRepo userRepo, RoleRepo roleRepo, BCryptPasswordEncoder passwordEncoder) {
+    public UserServiceImp(UserRepo userRepo, RoleRepo roleRepo) {
         this.userRepo = userRepo;
         this.roleRepo = roleRepo;
-        this.passwordEncoder = passwordEncoder;
+
     }
 
     @Override
@@ -54,7 +55,7 @@ public class UserServiceImp implements UserService, UserDetailsService {
         User user = findByUserName(username).orElseThrow(() -> new UsernameNotFoundException(
                 String.format("IN findByUserName EXCEPTION: not found by username {}.", username)
         ));
-        log.info("IN findByUserName - user: {} found by username {}.", username);
+        log.info("IN findByUserName - user: {} found by username {}.", username, username);
 
 
         return new org.springframework.security.core.userdetails.User(
@@ -70,7 +71,7 @@ public class UserServiceImp implements UserService, UserDetailsService {
         Role roleUser = roleRepo.findByName("ROLE_USER").get();
         List<Role> userRoles = new ArrayList<>();
         userRoles.add(roleUser);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+//        user.setPassword(
         user.setRoles(userRoles);
         user.setStatus(Status.ACTIVE);
         User regeisteredUser = userRepo.save(user);

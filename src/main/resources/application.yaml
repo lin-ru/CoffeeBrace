@@ -31,5 +31,5 @@ spring:
 
 jwt:
   token:
-    secret: jwtappdev
+    secret: and0YXBwZGV2
     expired: 600000
